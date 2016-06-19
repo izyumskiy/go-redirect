@@ -19,7 +19,7 @@ func Init(c *gin.Context) *Codes {
 	// Init code
 	inputInstance.Uha_id = params[0]
 	inputInstance.Link_id = params[1]
-	// ...
+
 	return inputInstance
 }
 
