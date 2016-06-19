@@ -1,31 +1,37 @@
 ﻿package main
 
 import (
-	"github.com/highload/interfaces/app"
-	"github.com/highload/interfaces/handlers"
+	"net/http"
+	"github.com/redirects/interfaces/handlers"
 	"log"
+	"fmt"
+	"github.com/gin-gonic/gin"
 )
 
 func init() {
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 }
 
+func handler(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprintf(w, "Hi there, I love %s!", r.URL.Path[1:])
+}
+
 func main() {
 	log.Println("Server is preparing to start")
-	Application := app.GetApplication()
+	
+	router := gin.New()
+	// Настройки приложения также из конфига
+	// Здесь роутинг нужно брать из JSON конфига
+	// для каждогу роута задавать имя контроллера
+	// далее цикл по конфигу с роутами и подписка на все роуты
+    router.GET("/click-:codes", handlers.Handler)
+	/*
+	/click-XXXXXX-YYYYYY
+	/click?
+	
+	*/
 
-	if Application.Config.Site.Disabled {
-		log.Println("Site is disabled")
-		Application.Routes(app.MapRoutes{"/": handlers.HandleDisabled{}})
-	} else {
-		Application.Routes(app.MapRoutes{
-			"/": handlers.HandleHome{},
-			"/v1/ajax/": handlers.HandleAjax{},
-			// другие контроллеры
-			"/{url:.*}": handlers.Handle404{},
-		})
-	}
-
-	Application.Run()
-	log.Println("Exit")
+    // By default it serves on :8080 unless a
+    // PORT environment variable was defined.
+    router.Run(":8080")
 }
