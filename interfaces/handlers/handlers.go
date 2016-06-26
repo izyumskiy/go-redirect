@@ -3,7 +3,7 @@ package handlers
 import (
 	"net/http"
 	"github.com/gin-gonic/gin"
-	"github.com/redirects/interfaces/input"
+	"github.com/go-redirect/interfaces/input"
 )
 
 func Handler(c *gin.Context) {

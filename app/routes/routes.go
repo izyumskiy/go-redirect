@@ -2,7 +2,7 @@ package routes
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/redirects/interfaces/handlers"
+	"github.com/go-redirect/interfaces/handlers"
 )
 
 type ServerApp struct {
