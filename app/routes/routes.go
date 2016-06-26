@@ -24,6 +24,7 @@ func GetServer(port string) *ServerApp {
 
 func (server *ServerApp) InitRoutes() {
 	server.Router.GET("/click-:codes", handlers.Handler)
+	//server.Router.GET("/click-:codes", handlers.Handler)
 }
 
 func (server *ServerApp) Run() {
