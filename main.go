@@ -16,13 +16,6 @@ func handler(w http.ResponseWriter, r *http.Request) {
     fmt.Fprintf(w, "Hi there, I love %s!", r.URL.Path[1:])
 }
 
-type RouterConfig struct {
-	Route  string
-	Redirect string
-	BeforeHandler string
-	Handler string
-}
-
 
 func main() {
 	log.Println("Server is preparing to start")

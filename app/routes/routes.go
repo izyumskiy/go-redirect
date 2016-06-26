@@ -2,7 +2,7 @@ package routes
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/redirects/interfaces/handlers"
+	"github.com/go-redirect/interfaces/handlers"
 )
 
 type ServerApp struct {
@@ -24,6 +24,7 @@ func GetServer(port string) *ServerApp {
 
 func (server *ServerApp) InitRoutes() {
 	server.Router.GET("/click-:codes", handlers.Handler)
+	//server.Router.GET("/mtch", handlers.Handler)
 	//server.Router.GET("/click-:codes", handlers.Handler)
 }
 
